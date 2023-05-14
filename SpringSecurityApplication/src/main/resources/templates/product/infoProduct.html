@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Информация о товаре</title>
+    <link th:href="@{/css/bootstrap.min.css}" type="text/css" rel="stylesheet">
+    <link th:href="@{/css/index.css}" type="text/css" rel="stylesheet">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/">
+            <img th:src="@{/img/java.png}" alt="Logo" width="30" height="30" class="d-inline-block align-text-top">
+            Магазин
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="/">Главная</a>
+                </li>
+            </ul>
+            <div class="d-grid gap-2 d-md-block">
+                <a class="btn btn-primary" href="/authentication">Войти</a>
+                <a class="btn btn-primary" href="/registration">Зарегистрироваться</a>
+            </div>
+        </div>
+    </div>
+</nav>
+<h3 class="text-center mt-5" th:text="${product.getTitle()}"></h3>
+<div class="container mb-5">
+    <p th:text="'Описание: ' + ${product.getDescription()}"></p>
+    <hr>
+    <p th:text="'Цена: ' + ${product.getPrice()}"></p>
+    <hr>
+    <p th:text="'Cклад: ' + ${product.getWarehouse()}"></p>
+    <hr>
+    <p th:text="'Продавец: ' + ${product.getSeller()}"></p>
+    <hr>
+    <p th:text="'Категория: ' + ${product.getCategory().getName()}"></p>
+    <hr>
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-4">
+        <div th:each="img : ${product.getImageList()}" class="col zoom">
+            <div class="card text-bg-light">
+                <img th:src="'/img/' + ${img.getFileName()}">
+            </div>
+        </div>
+    </div>
+</div>
+<script th:src="@{/js/bootstrap.min.js}"></script>
+</body>
+</html>
